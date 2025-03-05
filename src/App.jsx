@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import db from ".";
 import { collection, getDocs} from "firebase/firestore";
@@ -19,20 +18,12 @@ function App() {
     fetchData();
   }, []);
 
+  const handleAddTask = () => {
+    alert('サンプル')
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>hello</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={() => handleAddTask()}>追加</button>
     </div>
   );
 }
