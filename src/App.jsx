@@ -1,6 +1,6 @@
 import "./App.css";
 import db from ".";
-import { collection, getDocs} from "firebase/firestore";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 import { useEffect } from "react";
 
 function App() {
@@ -18,9 +18,13 @@ function App() {
     fetchData();
   }, []);
 
-  const handleAddTask = () => {
-    alert('サンプル')
-  }
+  const handleAddTask = async () => {
+    //docRefはDocument Reference（ドキュメント参照）
+    const docRef = await addDoc(collection(db, "task"), {
+      title: "サンプル",
+    });
+    console.log("Document written with ID: ", docRef.id);
+  };
   return (
     <div className="App">
       <button onClick={() => handleAddTask()}>追加</button>
