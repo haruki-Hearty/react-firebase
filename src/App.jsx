@@ -41,7 +41,7 @@ function App() {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-      <button onClick={() => handleAddTask()}>追加</button>
+      <button onClick={() => handleAddTask()} disabled={title === ""}>追加</button>
     </div>
   );
 }
