@@ -11,3 +11,71 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+ul {
+  width: 100%;
+  list-style: none;
+  font-size: 30px;
+  padding-left: 0;
+}
+
+.inner {
+  max-width: 1000px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+
+/* チェックボックスボタンのスタイル */
+.checkbox-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s ease;
+}
+
+.checkbox-button:hover {
+  background-color: #f0f0f0;
+}
+
+.checkbox-button:active {
+  background-color: #e0e0e0;
+}
+
+.checkbox-button.checked {
+  color: #fff;
+  background-color: #4caf50;
+  border-color: #4caf50;
+}
+
+.checkbox-button.checked:hover {
+  background-color: #45a049;
+}
+
+.checkbox-button.checked:active {
+  background-color: #3e8e41;
+}
+
+.taskList {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
