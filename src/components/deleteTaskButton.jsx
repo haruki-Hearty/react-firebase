@@ -1,8 +1,8 @@
 import { deleteDoc, doc } from "firebase/firestore";
-
+import db from "../";
 //データベースから削除
 const DeleteTaskButton = (props) => {
-  const {db, fetchData, id } = props;
+  const {fetchData, id } = props;
   console.log(props)
   const handleDeleteTask = async (id) => {
     try {
