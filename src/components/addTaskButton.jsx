@@ -1,5 +1,6 @@
 import { addDoc, collection } from "firebase/firestore";
-import db from "../";
+import db from "../libs/firebase/init.ts";
+
 // 追加をクリックするとfirestoreにタスクが追加される
 const AddTaskButton = (props) => {
   const { title, fetchData, setTitle, } = props;

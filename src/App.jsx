@@ -1,5 +1,5 @@
 import "./App.css";
-import db from ".";
+import db from "./libs/firebase/init.ts";
 import {
   collection,
   getDocs,

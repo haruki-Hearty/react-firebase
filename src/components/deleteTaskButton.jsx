@@ -1,5 +1,5 @@
 import { deleteDoc, doc } from "firebase/firestore";
-import db from "../";
+import db from "../libs/firebase/init.ts";
 //データベースから削除
 const DeleteTaskButton = (props) => {
   const {fetchData, id } = props;
