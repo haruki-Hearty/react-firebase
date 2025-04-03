@@ -9,8 +9,9 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import DeleteTaskButton from "./components/deleteTaskButton";
-import AddTaskButton from "./components/addTaskButton";
+import DeleteTask from "./firebase/deleteTask.jsx";
+import Button from "./components/button.jsx";
+import AddTask from "./firebase/addTask.js";
 
 function App() {
   const [title, setTitle] = useState("");
@@ -30,6 +31,27 @@ function App() {
     });
     fetchData();
   };
+
+  const handleAddTask = async () => {
+    if (!title) return;
+    try {
+      await AddTask(title);
+      setTitle("");
+      fetchData();
+    } catch (error) {
+      console.error("Failed to add task:", error);
+    }
+  };
+
+  const handleDeleteTask = async (id) => {
+    try {
+      await DeleteTask(id);
+      setTitle("");
+      fetchData();
+    } catch (error) {
+      console.error("Failed to add task:", error);
+    }
+  }
 
   const fetchData = async () => {
     try {
@@ -52,7 +74,6 @@ function App() {
     fetchData();
   }, []);
 
-
   return (
     <div className="App">
       <div className="inner">
@@ -61,11 +82,7 @@ function App() {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <AddTaskButton
-          title={title}
-          fetchData={fetchData}
-          setTitle={setTitle}
-        />
+        <Button handleTask={handleAddTask}>追加</Button>
         <div className="taskList">
           <ul>
             {tasks.map((task) => (
@@ -76,7 +93,7 @@ function App() {
                   onChange={() => handleConpleteTask(task.id, task.conpleted)}
                 />
                 {task.title}
-                <DeleteTaskButton fetchData={fetchData} id={task.id} />
+                <Button handleTask={() => handleDeleteTask(task.id)}>削除</Button>
               </li>
             ))}
           </ul>
