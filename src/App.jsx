@@ -9,9 +9,9 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import DeleteTask from "./firebase/deleteTask.jsx";
+import { deleteTask } from "./firebase/deleteTask.jsx";
 import Button from "./components/button.jsx";
-import AddTask from "./firebase/addTask.js";
+import { addTask } from "./firebase/addTask.js";
 
 function App() {
   const [title, setTitle] = useState("");
@@ -35,7 +35,7 @@ function App() {
   const handleAddTask = async () => {
     if (!title) return;
     try {
-      await AddTask(title);
+      await addTask(title);
       setTitle("");
       fetchData();
     } catch (error) {
@@ -45,13 +45,13 @@ function App() {
 
   const handleDeleteTask = async (id) => {
     try {
-      await DeleteTask(id);
+      await deleteTask(id);
       setTitle("");
       fetchData();
     } catch (error) {
       console.error("Failed to add task:", error);
     }
-  }
+  };
 
   const fetchData = async () => {
     try {
@@ -93,7 +93,9 @@ function App() {
                   onChange={() => handleConpleteTask(task.id, task.conpleted)}
                 />
                 {task.title}
-                <Button handleTask={() => handleDeleteTask(task.id)}>削除</Button>
+                <Button handleTask={() => handleDeleteTask(task.id)}>
+                  削除
+                </Button>
               </li>
             ))}
           </ul>

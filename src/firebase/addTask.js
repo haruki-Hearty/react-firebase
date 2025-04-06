@@ -6,7 +6,7 @@ import db from "../libs/firebase/init.ts";
  * ロジック(処理)とUI(見た目)の分離
  * firebaseのロジックを分ける
  */
-const AddTask = async (title) => {
+export const addTask = async (title) => {
   try {
     //docRefはDocument Reference（ドキュメント参照）
     const docRef = await addDoc(collection(db, "task"), {
@@ -18,5 +18,3 @@ const AddTask = async (title) => {
     console.error("Error adding document: ", error);
   }
 }
-
-export default AddTask;
