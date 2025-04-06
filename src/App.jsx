@@ -18,7 +18,7 @@ function App() {
   const [tasks, setTasks] = useState([]); // タスクリストの状態を管理
 
   // データベースのフィールドを完了にする
-  const handleConpleteTask = async (id, prevCopleted) => {
+  const toggleComplete = async (id, prevCopleted) => {
     console.log("タスクのID:", id);
     /**
      * チェックしたタスクのidを取得
@@ -90,7 +90,7 @@ function App() {
                 <input
                   type="checkbox"
                   checked={task.conpleted}
-                  onChange={() => handleConpleteTask(task.id, task.conpleted)}
+                  onChange={() => toggleComplete(task.id, task.conpleted)}
                 />
                 {task.title}
                 <Button handleTask={() => handleDeleteTask(task.id)}>
