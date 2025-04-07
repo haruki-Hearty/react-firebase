@@ -82,6 +82,9 @@ function App() {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
+        <h1 className="text-3xl font-bold underline text-red-400">
+      Hello world!
+    </h1>
         <Button handleTask={handleAddTask}>追加</Button>
         <div className="taskList">
           <ul>
