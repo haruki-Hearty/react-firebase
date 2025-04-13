@@ -76,27 +76,27 @@ function App() {
 
   return (
     <div className="App">
-      <div className="inner">
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <h1 className="text-3xl font-bold underline text-red-400">
-      Hello world!
-    </h1>
-        <Button handleTask={handleAddTask}>追加</Button>
-        <div className="taskList">
-          <ul>
+      <div className="inner mx-auto px-4 max-w-screen-xl">
+        <div className="flex justify-center gap-4">
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <Button className="flex h-9 items-center justify-center rounded-full bg-gradient-to-b from-gray-50 from-50% to-gray-100 to-50% px-3 text-gray-900 shadow hover:from-gray-100 hover:to-gray-200 active:shadow-none" handleTask={handleAddTask}>追加</Button>
+        </div>
+        <div className="">
+          <ul className="flex flex-col max-w-full mt-8 gap-y-2">
             {tasks.map((task) => (
-              <li className="taskList" key={task.id}>
+              <li className="grid grid-cols-3 justify-center place-items-center" key={task.id}>
                 <input
+                className=""
                   type="checkbox"
                   checked={task.conpleted}
                   onChange={() => toggleComplete(task.id, task.conpleted)}
                 />
                 {task.title}
-                <Button handleTask={() => handleDeleteTask(task.id)}>
+                <Button className={`py-1 px-5 bg-red-500 rounded-2xl text-white font-black`} handleTask={() => handleDeleteTask(task.id)}>
                   削除
                 </Button>
               </li>
