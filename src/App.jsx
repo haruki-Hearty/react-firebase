@@ -14,6 +14,7 @@ function App() {
   const [tasks, setTasks] = useState([]); // タスクリストの状態を管理
   const [posts, setPosts] = useState([]); // 投稿の状態を管理
 
+  console.log("タスクの状態:", tasks);
   // データベースのフィールドを完了にする
   const toggleComplete = async (id, prevCopleted) => {
     console.log("タスクのID:", id);
@@ -40,11 +41,12 @@ function App() {
     }
   };
 
-  const handleDeleteTask = async (id) => {
+  const handleDeleteTask = async (collectionName,id) => {
     try {
-      await deleteTask(id);
+      await deleteTask(collectionName,id);
       setTitle("");
       getTask();
+      getPosts();
     } catch (error) {
       console.error("Failed to de;ete task:", error);
     }
@@ -106,7 +108,7 @@ function App() {
                 {task.title}
                 <Button
                   className={`py-1 px-5 bg-red-500 rounded-2xl text-white font-black`}
-                  handleTask={() => handleDeleteTask(task.id)}
+                  handleTask={() => handleDeleteTask("task",task.id)}
                 >
                   削除
                 </Button>
@@ -129,7 +131,7 @@ function App() {
                 {post.title}
                 <Button
                   className={`py-1 px-5 bg-red-500 rounded-2xl text-white font-black`}
-                  handleTask={() => handleDeleteTask(post.id)}
+                  handleTask={() => handleDeleteTask("posts",post.id)}
                 >
                   削除
                 </Button>
