@@ -12,7 +12,7 @@ import { fetchTask } from "./firebase/fetchTask.js";
 function App() {
   const [title, setTitle] = useState("");
   const [tasks, setTasks] = useState([]); // タスクリストの状態を管理
-  // const [todoDate, setTodoDate] = useState([]); // 投稿の状態を管理
+  const [posts, setPosts] = useState([]); // 投稿の状態を管理
 
   // データベースのフィールドを完了にする
   const toggleComplete = async (id, prevCopleted) => {
@@ -46,19 +46,30 @@ function App() {
       setTitle("");
       getTask();
     } catch (error) {
-      console.error("Failed to add task:", error);
+      console.error("Failed to de;ete task:", error);
     }
   };
 
   const getTask = async () => {
     try {
-      const loadTask = await fetchTask();
+      const loadTask = await fetchTask("task");
       setTasks(loadTask);
     } catch (error) {
-      console.log("Error fetching TodoDate: ", error);
+      console.log("Error fetching Task: ", error);
     }
   };
+  const getPosts = async () => {
+    try {
+      const loadPosts = await fetchTask("posts");
+      setPosts(loadPosts);
+    } catch (error) {
+      console.log("Error fetching posts: ", error);
+    }
+  };
+
+  
   useEffect(() => {
+    getPosts();
     getTask();
   }, []);
 
@@ -79,7 +90,8 @@ function App() {
           </Button>
         </div>
         <div className="">
-          <ul className="flex flex-col max-w-full mt-8 gap-y-2">
+          <h2 className="text-2xl mt-8">タスク一覧</h2>
+          <ul className="flex flex-col max-w-full gap-y-2">
             {tasks.map((task) => (
               <li
                 className="grid grid-cols-3 justify-center place-items-center"
@@ -95,6 +107,29 @@ function App() {
                 <Button
                   className={`py-1 px-5 bg-red-500 rounded-2xl text-white font-black`}
                   handleTask={() => handleDeleteTask(task.id)}
+                >
+                  削除
+                </Button>
+              </li>
+            ))}
+          </ul>
+          <h2 className="text-2xl mt-8">ポスト一覧</h2>
+          <ul>
+            {posts.map((post) => (
+              <li
+                className="grid grid-cols-3 justify-center place-items-center"
+                key={post.id}
+              >
+                <input
+                  className=""
+                  type="checkbox"
+                  checked={post.conpleted}
+                  onChange={() => toggleComplete(post.id, post.conpleted)}
+                />
+                {post.title}
+                <Button
+                  className={`py-1 px-5 bg-red-500 rounded-2xl text-white font-black`}
+                  handleTask={() => handleDeleteTask(post.id)}
                 >
                   削除
                 </Button>
